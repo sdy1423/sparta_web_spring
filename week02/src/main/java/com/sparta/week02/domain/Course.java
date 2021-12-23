@@ -1,9 +1,11 @@
 package com.sparta.week02.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Getter //Getter작성안해도 lombok이 작성해준다.
 @NoArgsConstructor // 기본생성자를 대신 생성해줍니다. (Argument = parameter가 없다는 뜻이니까 기본 생성자 대신 생성하는거)
 @Entity // 그냥 클래스가 아니라 테이블임을 나타냅니다.
 public class Course extends Timestamped {
@@ -18,29 +20,14 @@ public class Course extends Timestamped {
     @Column(nullable = false)
     private String tutor;
 
-    //id는 데이터베이스에서 쓰는거니까 getter 설정 안한다.
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getTutor() {
-        return this.tutor;
-    }
-    //setter는 repository 에서 해주니까 필요 없는것.
-
     public Course(String title, String tutor) {
         this.title = title;
         this.tutor = tutor;
     }
 
     //[2-7] Update 추가
-    public void update(Course course) {
-        this.title = course.title;
-        this.tutor = course.tutor;
+    public void update(CourseRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.tutor = requestDto.getTutor();
     }
 }
