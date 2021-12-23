@@ -139,7 +139,7 @@ public class Week02Application {
             }
 
 
-            courseRepository.deleteAll();
+//            courseRepository.deleteAll();
         };
     }
 }
