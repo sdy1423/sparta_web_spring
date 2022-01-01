@@ -20,6 +20,11 @@ public class Course extends Timestamped {
     @Column(nullable = false)
     private String tutor;
 
+    public Course(CourseRequestDto requestDto){
+        this.title= requestDto.getTitle();
+        this.tutor= requestDto.getTutor();
+    }
+
     public Course(String title, String tutor) {
         this.title = title;
         this.tutor = tutor;
@@ -30,4 +35,6 @@ public class Course extends Timestamped {
         this.title = requestDto.getTitle();
         this.tutor = requestDto.getTutor();
     }
+
+
 }
